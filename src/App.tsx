@@ -11,7 +11,7 @@ import { useNotification } from './hooks/useNotification'
 import { loginRoutes } from './pages/Signin/routes'
 import { dashboardRoutes } from './pages/Dashboard/routes'
 import { listUser } from './pages/User/routes'
-import { listVehicle } from './pages/Vehicle/routes'
+import { listVideo } from './pages/Video/routes'
 
 import { ThemeProvider } from 'styled-components'
 import { useTheme } from './hooks/theme'
@@ -23,7 +23,7 @@ const routes: RouteObject[] = [...loginRoutes]
 const routesLoggedIn: RouteObject[] = [
 	...dashboardRoutes,
 	...listUser,
-	...listVehicle
+	...listVideo
 ].map((route) => ({
 	...route,
 	loader: verifyLoggedIn
