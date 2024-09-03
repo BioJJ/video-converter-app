@@ -14,7 +14,7 @@ export const useUser = () => {
 	const [loading, setLoading] = useState(false)
 	const { setNotification } = useGlobalReducer()
 
-	const { setCollaborators, setUser, userList, user } = useUserReducer()
+	const { setCollaborators, setUser, userList, user, users } = useUserReducer()
 
 	const getUsers = async (): Promise<void> => {
 		await connectionAPIGet<User[]>(`${URL_USERS}`).then((result) => {
@@ -23,10 +23,10 @@ export const useUser = () => {
 			setLoading(false)
 		})
 	}
-	const addNewUser = async (body: User): Promise<void> => {
+	const addNewUser = async (body: unknown): Promise<void> => {
 		setLoading(true)
 
-		await connectionAPIPost(URL_USERS, body)
+		await connectionAPIPost(`${URL_USERS}`, body)
 			.then(() => {
 				setNotification('Usuario cadastrada com sucesso!', 'success')
 			})
@@ -73,6 +73,7 @@ export const useUser = () => {
 		updateUser,
 		getUserById,
 		userList,
-		user
+		user,
+		users
 	}
 }
