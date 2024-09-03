@@ -6,10 +6,11 @@ import { useTheme } from '../../hooks/theme'
 
 import { Container, Profile, Welcome, UserName } from './style'
 import { useGlobalReducer } from '../../store/reducers/globalReducer/useGlobalReducer'
+import { getUserLogado } from '../../functions/connections/auth'
 
 const MainHeader: React.FC = () => {
 	const { toggleTheme, theme } = useTheme()
-	const { user } = useGlobalReducer()
+	const user  = getUserLogado()
 
 	const [darkTheme, setDarkTheme] = useState(() =>
 		theme.title === 'dark' ? true : false
