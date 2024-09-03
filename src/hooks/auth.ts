@@ -9,7 +9,10 @@ import {
 	ERROR_USER_CREATE
 } from '../constants/errorStatus'
 import { URL_AUTH, URL_USER_CREATE } from '../constants/urls'
-import { setAuthorizationToken } from '../functions/connections/auth'
+import {
+	setAuthorizationToken,
+	setUserLogado
+} from '../functions/connections/auth'
 import ConnectionAPI, {
 	connectionAPIPost,
 	MethodType
@@ -61,13 +64,18 @@ export const useRequests = () => {
 
 		await connectionAPIPost<AuthType>(URL_AUTH, body)
 			.then((result) => {
-				console.log(result)
 				setUser({
-					id: result.id,
+					id: result.sub,
 					email: result.email,
 					name: result.name
 				})
 
+				setUserLogado({
+					id: result.sub,
+					email: result.email,
+					name: result.name
+				})
+				
 				setAuthorizationToken(result.access_token)
 				navigate(DashboardRoutesEnum.FIRST_SCREEN)
 				return result

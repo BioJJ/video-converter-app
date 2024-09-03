@@ -1,5 +1,5 @@
 export interface AuthType {
-	id: number
+	sub: number
 	email: string
 	name: string
 	cpf: string
