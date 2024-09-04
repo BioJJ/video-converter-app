@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import ContentHeader from '../../../components/ContentHeader'
 import Layout from '../../../components/Layout'
-import { ButtonNewActivity, Container, NewActivity, Content } from './style'
+import { Container, Content } from './style'
 import { useUser } from './../hooks/useUser'
-import Button from '../../../components/Button'
 import ListCard from '../../../components/ListCard'
 
 const List: React.FC = () => {
@@ -14,7 +13,7 @@ const List: React.FC = () => {
 	}, [])
 
 	const pageData = {
-		title: 'Users',
+		title: 'User',
 		lineColor: '#4E41F0'
 	}
 
@@ -25,14 +24,6 @@ const List: React.FC = () => {
 					title={pageData.title}
 					lineColor={pageData.lineColor}
 				></ContentHeader>
-
-				<NewActivity>
-					<ButtonNewActivity href="/user/created">
-						<Button type="primary" margin="10px 0px 10px 0px">
-							Novo Usuario
-						</Button>
-					</ButtonNewActivity>
-				</NewActivity>
 
 				<Content>
 					{userList.map((item) => (

@@ -4,7 +4,7 @@ export const Container = styled.div``
 
 export const Content = styled.main``
 
-export const NewActivity = styled.div`
+export const NewUser = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: start;
@@ -12,7 +12,7 @@ export const NewActivity = styled.div`
 	width: 100%;
 `
 
-export const ButtonNewActivity = styled.a`
+export const ButtonNewUser = styled.a`
 	color: ${(props) => props.theme.colors.info};
 	text-decoration: none;
 

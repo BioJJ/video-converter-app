@@ -29,6 +29,16 @@ export const useVideo = () => {
 		})
 	}
 
+	const getAllVideos = async (): Promise<void> => {
+		setLoading(true)
+		await connectionAPIGet<Video[]>(
+			`${URL_VIDEO}`
+		).then((result) => {
+			setVideos(result)
+			setLoading(false)
+		})
+	}
+
 	const addNewVideo = async (body: Video): Promise<void> => {
 		setLoading(true)
 		await connectionAPIPostFile<Video>(URL_VIDEO, body).then((result) => {
@@ -90,6 +100,7 @@ export const useVideo = () => {
 		video,
 		getVideos,
 		videos,
-		getGifById
+		getGifById,
+		getAllVideos
 	}
 }
