@@ -41,7 +41,7 @@ const List: React.FC = () => {
 							tagColor={'#4E41F0'}
 							title={item.title as string}
 							subtitle={item.videoId as string}
-							amount={item.status as string}
+							amount={String(item.status ? 'Ativo' : 'Inativo')}
 							url={`/video/${item.id}`}
 						/>
 					))}

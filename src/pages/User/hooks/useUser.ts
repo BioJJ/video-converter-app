@@ -9,6 +9,7 @@ import {
 } from '../../../functions/connections/connectionsAPI'
 import { URL_USERS } from '../../../constants/urls'
 import { useUserReducer } from '../../../store/reducers/userReducer/useUserReducer'
+import { getUserLogado } from '../../../functions/connections/auth'
 
 export const useUser = () => {
 	const [loading, setLoading] = useState(false)
@@ -17,12 +18,21 @@ export const useUser = () => {
 	const { setCollaborators, setUser, userList, user, users } = useUserReducer()
 
 	const getUsers = async (): Promise<void> => {
+		await connectionAPIGet<User>(`${URL_USERS}/${getUserLogado().id}`).then((result) => {
+			setLoading(true)
+			setCollaborators([result])
+			setLoading(false)
+		})
+	}
+
+	const getAllUsers = async (): Promise<void> => {
 		await connectionAPIGet<User[]>(`${URL_USERS}`).then((result) => {
 			setLoading(true)
 			setCollaborators(result)
 			setLoading(false)
 		})
 	}
+
 	const addNewUser = async (body: unknown): Promise<void> => {
 		setLoading(true)
 
@@ -37,6 +47,7 @@ export const useUser = () => {
 
 		setLoading(false)
 	}
+
 	const updateUser = async (body: User): Promise<void> => {
 		setLoading(true)
 
@@ -51,6 +62,7 @@ export const useUser = () => {
 
 		setLoading(false)
 	}
+
 	const getUserById = async (id: number): Promise<void> => {
 		setLoading(true)
 
@@ -74,6 +86,7 @@ export const useUser = () => {
 		getUserById,
 		userList,
 		user,
-		users
+		users,
+		getAllUsers
 	}
 }
